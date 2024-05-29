@@ -1,0 +1,15 @@
+{
+  "name": "acf/popular-actors",
+  "title": "Popular Actors",
+  "description": "Top 10 most popular actors",
+  "category": "omar-boza",
+  "icon": "admin-users",
+  "keywords": ["actors"],
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "popular-actors.php"
+  },
+  "supports": {
+    "anchor": true
+  }
+}

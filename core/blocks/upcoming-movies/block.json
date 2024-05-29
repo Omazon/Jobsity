@@ -1,0 +1,15 @@
+{
+  "name": "acf/upcoming-movies",
+  "title": "upcoming Movies",
+  "description": "Upcoming movies, seperated by month and year",
+  "category": "omar-boza",
+  "icon": "format-video",
+  "keywords": ["movie"],
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "upcoming-movies.php"
+  },
+  "supports": {
+    "anchor": true
+  }
+}
