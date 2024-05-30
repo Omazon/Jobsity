@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 
 import upcomingMovies from '../../../blocks/upcoming-movies/src/upcoming-movies.vue'
 import popularActors from '../../../blocks/popular-actors/src/popular-actors.vue'
+import singleMovie from '../src/single-movie.vue'
 
 document.addEventListener('DOMContentLoaded', function () {
     if (document.getElementById('upcoming-movies')) {
@@ -9,5 +10,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     if (document.getElementById('popular-actors')) {
         createApp(popularActors).mount('#popular-actors');
+    }
+    if (document.getElementById('single-movie')) {
+        createApp(singleMovie).mount('#single-movie');
     }
 });

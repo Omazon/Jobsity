@@ -70,6 +70,7 @@ class Jobsity_Run{
         wp_localize_script('jobsity-frontend-scripts', 'siteData', array(
             'apiUrl' => home_url('/wp-json/jobsity/v2/'),
             'siteName' => get_bloginfo('name'),
+            'siteBase' => home_url('/'),
         ));
 	}
 

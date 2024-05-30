@@ -57,6 +57,49 @@ class Jobsity_REST {
                 'callback' => [$this,'get_popular_actors'],
             ]);
         });
+
+        add_action('rest_api_init', function () {
+            register_rest_route('jobsity/v2', '/movie/(?P<movie_id>\d+)', [
+                'methods' => 'GET',
+                'callback' => [$this,'get_single_movie'],
+            ]);
+        });
+
+        add_action('rest_api_init', function () {
+            register_rest_route('jobsity/v2', '/movie/(?P<movie_id>\d+)/alternative-titles', [
+                'methods' => 'GET',
+                'callback' => [$this,'get_alternative_titles'],
+            ]);
+        });
+
+        add_action('rest_api_init', function () {
+            register_rest_route('jobsity/v2', '/movie/(?P<movie_id>\d+)/videos', [
+                'methods' => 'GET',
+                'callback' => [$this,'get_trailer'],
+            ]);
+        });
+
+        add_action('rest_api_init', function () {
+            register_rest_route('jobsity/v2', '/movie/(?P<movie_id>\d+)/credits', [
+                'methods' => 'GET',
+                'callback' => [$this,'get_credits'],
+            ]);
+        });
+
+        add_action('rest_api_init', function () {
+            register_rest_route('jobsity/v2', '/movie/(?P<movie_id>\d+)/reviews', [
+                'methods' => 'GET',
+                'callback' => [$this,'get_reviews'],
+            ]);
+        });
+
+        add_action('rest_api_init', function () {
+            register_rest_route('jobsity/v2', '/movie/(?P<movie_id>\d+)/similar', [
+                'methods' => 'GET',
+                'callback' => [$this,'get_similar_movies'],
+            ]);
+        });
+
     }
 
     function get_upcoming_movies(WP_REST_Request $request) {
@@ -86,7 +129,64 @@ class Jobsity_REST {
         return new WP_REST_Response($data, 200);
     }
 
+    function get_single_movie(WP_REST_Request $request) {
+        $movie_id = $request->get_param('movie_id');
+        $response = $this->client->request('GET', "movie/{$movie_id}?language=en-US");
 
+        $body = $response->getBody();
+        $data = json_decode($body, true);
+
+        return new WP_REST_Response($data, 200);
+    }
+
+    function get_alternative_titles(WP_REST_Request $request) {
+        $movie_id = $request->get_param('movie_id');
+        $response = $this->client->request('GET', "movie/{$movie_id}/alternative_titles?language=en-US");
+
+        $body = $response->getBody();
+        $data = json_decode($body, true);
+
+        return new WP_REST_Response($data, 200);
+    }
+
+    function get_trailer(WP_REST_Request $request) {
+        $movie_id = $request->get_param('movie_id');
+        $response = $this->client->request('GET', "movie/{$movie_id}/videos?language=en-US");
+
+        $body = $response->getBody();
+        $data = json_decode($body, true);
+
+        return new WP_REST_Response($data, 200);
+    }
+    function get_credits(WP_REST_Request $request) {
+        $movie_id = $request->get_param('movie_id');
+        $response = $this->client->request('GET', "movie/{$movie_id}/credits?language=en-US");
+
+        $body = $response->getBody();
+        $data = json_decode($body, true);
+
+        return new WP_REST_Response($data, 200);
+    }
+
+    function get_reviews(WP_REST_Request $request) {
+        $movie_id = $request->get_param('movie_id');
+        $response = $this->client->request('GET', "movie/{$movie_id}/reviews?language=en-US");
+
+        $body = $response->getBody();
+        $data = json_decode($body, true);
+
+        return new WP_REST_Response($data, 200);
+    }
+
+    function get_similar_movies(WP_REST_Request $request) {
+        $movie_id = $request->get_param('movie_id');
+        $response = $this->client->request('GET', "movie/{$movie_id}/similar?language=en-US");
+
+        $body = $response->getBody();
+        $data = json_decode($body, true);
+
+        return new WP_REST_Response($data, 200);
+    }
 
 }
 

@@ -18486,6 +18486,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _blocks_upcoming_movies_src_upcoming_movies_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../blocks/upcoming-movies/src/upcoming-movies.vue */ "./core/blocks/upcoming-movies/src/upcoming-movies.vue");
 /* harmony import */ var _blocks_popular_actors_src_popular_actors_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../blocks/popular-actors/src/popular-actors.vue */ "./core/blocks/popular-actors/src/popular-actors.vue");
+/* harmony import */ var _src_single_movie_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../src/single-movie.vue */ "./core/includes/assets/src/single-movie.vue");
+
 
 
 
@@ -18495,6 +18497,9 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   if (document.getElementById('popular-actors')) {
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)(_blocks_popular_actors_src_popular_actors_vue__WEBPACK_IMPORTED_MODULE_2__["default"]).mount('#popular-actors');
+  }
+  if (document.getElementById('single-movie')) {
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)(_src_single_movie_vue__WEBPACK_IMPORTED_MODULE_3__["default"]).mount('#single-movie');
   }
 });
 
@@ -18816,6 +18821,11 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         return genreIds.has(genre.id);
       });
     });
+    function generateSlug(movie, id) {
+      var normalizedStr = movie.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      var slug = normalizedStr.toLowerCase().replace(/\s+/g, '-').replace(/[^\w\-]+/g, '').replace(/\-\-+/g, '-').replace(/^-+/, '').replace(/-+$/, '');
+      return siteData.siteBase + 'movie/' + id + '-' + slug;
+    }
     var __returned__ = {
       upcomingMovies: upcomingMovies,
       genres: genres,
@@ -18837,8 +18847,311 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       formattedDate: formattedDate,
       filteredItems: filteredItems,
       availableGenres: availableGenres,
-      ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
+      generateSlug: generateSlug,
+      computed: vue__WEBPACK_IMPORTED_MODULE_0__.computed,
       onMounted: vue__WEBPACK_IMPORTED_MODULE_0__.onMounted,
+      ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref
+    };
+    Object.defineProperty(__returned__, '__isScriptSetup', {
+      enumerable: false,
+      value: true
+    });
+    return __returned__;
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./core/includes/assets/src/single-movie.vue?vue&type=script&setup=true&lang=js":
+/*!******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./core/includes/assets/src/single-movie.vue?vue&type=script&setup=true&lang=js ***!
+  \******************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+
+var creditsToShow = 8;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  __name: 'single-movie',
+  setup: function setup(__props, _ref) {
+    var __expose = _ref.expose;
+    __expose();
+    var acfMovieId = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)('');
+    var movie = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({});
+    var alternativeTitles = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({});
+    var trailer = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({});
+    var credits = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({});
+    var reviews = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({});
+    var similarMovies = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({});
+    var currentPage = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(1);
+    var displayedCredits = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({});
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+      var element;
+      return _regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            element = document.getElementById('single-movie');
+            acfMovieId.value = JSON.parse(element.getAttribute('data-movie-id'));
+            fetchMovie();
+            fetchAlternativeTitles();
+            fetchVideos();
+            fetchCredits();
+            fetchReviews();
+            fetchSimilar();
+          case 8:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee);
+    })));
+    var fetchMovie = /*#__PURE__*/function () {
+      var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        var response;
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.prev = 0;
+              _context2.next = 3;
+              return fetch(siteData.apiUrl + 'movie/' + acfMovieId.value);
+            case 3:
+              response = _context2.sent;
+              _context2.next = 6;
+              return response.json();
+            case 6:
+              movie.value = _context2.sent;
+              _context2.next = 12;
+              break;
+            case 9:
+              _context2.prev = 9;
+              _context2.t0 = _context2["catch"](0);
+              console.error('Error fetching upcoming movies:', _context2.t0);
+            case 12:
+            case "end":
+              return _context2.stop();
+          }
+        }, _callee2, null, [[0, 9]]);
+      }));
+      return function fetchMovie() {
+        return _ref3.apply(this, arguments);
+      };
+    }();
+    var fetchAlternativeTitles = /*#__PURE__*/function () {
+      var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+        var response;
+        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+          while (1) switch (_context3.prev = _context3.next) {
+            case 0:
+              _context3.prev = 0;
+              _context3.next = 3;
+              return fetch(siteData.apiUrl + 'movie/' + acfMovieId.value + '/alternative-titles');
+            case 3:
+              response = _context3.sent;
+              _context3.next = 6;
+              return response.json();
+            case 6:
+              alternativeTitles.value = _context3.sent;
+              _context3.next = 12;
+              break;
+            case 9:
+              _context3.prev = 9;
+              _context3.t0 = _context3["catch"](0);
+              console.error('Error fetching upcoming movies:', _context3.t0);
+            case 12:
+            case "end":
+              return _context3.stop();
+          }
+        }, _callee3, null, [[0, 9]]);
+      }));
+      return function fetchAlternativeTitles() {
+        return _ref4.apply(this, arguments);
+      };
+    }();
+    var fetchVideos = /*#__PURE__*/function () {
+      var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+        var response, data;
+        return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+          while (1) switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.prev = 0;
+              _context4.next = 3;
+              return fetch(siteData.apiUrl + 'movie/' + acfMovieId.value + '/videos');
+            case 3:
+              response = _context4.sent;
+              _context4.next = 6;
+              return response.json();
+            case 6:
+              data = _context4.sent;
+              trailer.value = data.results.find(function (video) {
+                return video.type === "Trailer";
+              });
+              _context4.next = 13;
+              break;
+            case 10:
+              _context4.prev = 10;
+              _context4.t0 = _context4["catch"](0);
+              console.error('Error fetching upcoming movies:', _context4.t0);
+            case 13:
+            case "end":
+              return _context4.stop();
+          }
+        }, _callee4, null, [[0, 10]]);
+      }));
+      return function fetchVideos() {
+        return _ref5.apply(this, arguments);
+      };
+    }();
+    var fetchCredits = /*#__PURE__*/function () {
+      var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
+        var response, data;
+        return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+          while (1) switch (_context5.prev = _context5.next) {
+            case 0:
+              _context5.prev = 0;
+              _context5.next = 3;
+              return fetch(siteData.apiUrl + 'movie/' + acfMovieId.value + '/credits');
+            case 3:
+              response = _context5.sent;
+              _context5.next = 6;
+              return response.json();
+            case 6:
+              data = _context5.sent;
+              credits.value = data.cast;
+              displayedCredits.value = credits.value.slice(0, creditsToShow);
+              _context5.next = 14;
+              break;
+            case 11:
+              _context5.prev = 11;
+              _context5.t0 = _context5["catch"](0);
+              console.error('Error fetching upcoming movies:', _context5.t0);
+            case 14:
+            case "end":
+              return _context5.stop();
+          }
+        }, _callee5, null, [[0, 11]]);
+      }));
+      return function fetchCredits() {
+        return _ref6.apply(this, arguments);
+      };
+    }();
+    var fetchReviews = /*#__PURE__*/function () {
+      var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
+        var response, data;
+        return _regeneratorRuntime().wrap(function _callee6$(_context6) {
+          while (1) switch (_context6.prev = _context6.next) {
+            case 0:
+              _context6.prev = 0;
+              _context6.next = 3;
+              return fetch(siteData.apiUrl + 'movie/' + acfMovieId.value + '/reviews');
+            case 3:
+              response = _context6.sent;
+              _context6.next = 6;
+              return response.json();
+            case 6:
+              data = _context6.sent;
+              reviews.value = data.results;
+              _context6.next = 13;
+              break;
+            case 10:
+              _context6.prev = 10;
+              _context6.t0 = _context6["catch"](0);
+              console.error('Error fetching upcoming movies:', _context6.t0);
+            case 13:
+            case "end":
+              return _context6.stop();
+          }
+        }, _callee6, null, [[0, 10]]);
+      }));
+      return function fetchReviews() {
+        return _ref7.apply(this, arguments);
+      };
+    }();
+    var fetchSimilar = /*#__PURE__*/function () {
+      var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
+        var response, data;
+        return _regeneratorRuntime().wrap(function _callee7$(_context7) {
+          while (1) switch (_context7.prev = _context7.next) {
+            case 0:
+              _context7.prev = 0;
+              _context7.next = 3;
+              return fetch(siteData.apiUrl + 'movie/' + acfMovieId.value + '/similar');
+            case 3:
+              response = _context7.sent;
+              _context7.next = 6;
+              return response.json();
+            case 6:
+              data = _context7.sent;
+              similarMovies.value = data.results;
+              _context7.next = 13;
+              break;
+            case 10:
+              _context7.prev = 10;
+              _context7.t0 = _context7["catch"](0);
+              console.error('Error fetching upcoming movies:', _context7.t0);
+            case 13:
+            case "end":
+              return _context7.stop();
+          }
+        }, _callee7, null, [[0, 10]]);
+      }));
+      return function fetchSimilar() {
+        return _ref8.apply(this, arguments);
+      };
+    }();
+    function formattedDate(dateString) {
+      if (!dateString) return;
+      var date = new Date(dateString);
+      var options = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      };
+      formattedDate.value = new Intl.DateTimeFormat('en-US', options).format(date);
+      return formattedDate.value;
+    }
+    var loadMore = function loadMore() {
+      currentPage.value++;
+      var newItems = credits.value.slice(0, currentPage.value * creditsToShow);
+      displayedCredits.value = newItems;
+    };
+    var hasMoreItems = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
+      return displayedCredits.value.length < credits.value.length;
+    });
+    function generateSlug(movie, id) {
+      var normalizedStr = movie.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      var slug = normalizedStr.toLowerCase().replace(/\s+/g, '-').replace(/[^\w\-]+/g, '').replace(/\-\-+/g, '-').replace(/^-+/, '').replace(/-+$/, '');
+      return siteData.siteBase + 'movie/' + id + '-' + slug;
+    }
+    var __returned__ = {
+      acfMovieId: acfMovieId,
+      movie: movie,
+      alternativeTitles: alternativeTitles,
+      trailer: trailer,
+      credits: credits,
+      reviews: reviews,
+      similarMovies: similarMovies,
+      creditsToShow: creditsToShow,
+      currentPage: currentPage,
+      displayedCredits: displayedCredits,
+      fetchMovie: fetchMovie,
+      fetchAlternativeTitles: fetchAlternativeTitles,
+      fetchVideos: fetchVideos,
+      fetchCredits: fetchCredits,
+      fetchReviews: fetchReviews,
+      fetchSimilar: fetchSimilar,
+      formattedDate: formattedDate,
+      loadMore: loadMore,
+      hasMoreItems: hasMoreItems,
+      generateSlug: generateSlug,
+      onMounted: vue__WEBPACK_IMPORTED_MODULE_0__.onMounted,
+      ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
       computed: vue__WEBPACK_IMPORTED_MODULE_0__.computed
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
@@ -18977,7 +19290,6 @@ var _hoisted_12 = {
   "class": "p-5 justify-between flex text-center flex-col h-60 bg-white"
 };
 var _hoisted_13 = {
-  href: "javascript:void(0)",
   "class": "font-semibold text-dark text-xl sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px] mb-4 block hover:text-primary"
 };
 var _hoisted_14 = {
@@ -18986,10 +19298,7 @@ var _hoisted_14 = {
 var _hoisted_15 = {
   "class": "text-base text-body-color leading-relaxed"
 };
-var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  href: "javascript:void(0)",
-  "class": "inline-block py-2 px-7 border border-gray-300 border-solid rounded-full text-base text-body-color font-medium"
-}, " View Details ", -1 /* HOISTED */);
+var _hoisted_16 = ["href"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [$setup.acfSort ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
@@ -19022,8 +19331,219 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       src: 'https://image.tmdb.org/t/p/original' + movie.poster_path,
       alt: "image",
       "class": "w-full"
-    }, null, 8 /* PROPS */, _hoisted_11), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(movie.title), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.formattedDate(movie.release_date)), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.getGenreNames(movie.genre_ids)), 1 /* TEXT */), _hoisted_16])])]);
+    }, null, 8 /* PROPS */, _hoisted_11), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(movie.title), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.formattedDate(movie.release_date)), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.getGenreNames(movie.genre_ids)), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+      href: $setup.generateSlug(movie.title, movie.id),
+      "class": "inline-block py-2 px-7 border border-gray-300 border-solid rounded-full text-base text-body-color font-medium hover:shadow-xl transition"
+    }, " View Details ", 8 /* PROPS */, _hoisted_16)])])]);
   }), 128 /* KEYED_FRAGMENT */))])], 64 /* STABLE_FRAGMENT */);
+}
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./core/includes/assets/src/single-movie.vue?vue&type=template&id=747d0850":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./core/includes/assets/src/single-movie.vue?vue&type=template&id=747d0850 ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* binding */ render)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+var _hoisted_1 = {
+  "class": "relative flex flex-col justify-center overflow-hidden"
+};
+var _hoisted_2 = {
+  "class": "w-full items-center"
+};
+var _hoisted_3 = {
+  "class": "group grid w-full md:grid-cols-3 grid-cols-1 gap-10"
+};
+var _hoisted_4 = {
+  "class": "relative flex items-end flex-col overflow-hidden"
+};
+var _hoisted_5 = {
+  "class": "rounded-xl overflow-hidden"
+};
+var _hoisted_6 = ["src"];
+var _hoisted_7 = {
+  "class": "col-span-2"
+};
+var _hoisted_8 = {
+  "class": "text-6xl"
+};
+var _hoisted_9 = {
+  "class": "mb-5 text-3xl"
+};
+var _hoisted_10 = {
+  "class": "flex gap-3"
+};
+var _hoisted_11 = {
+  "class": "mt-px"
+};
+var _hoisted_12 = {
+  "class": "text-2xl mt-6"
+};
+var _hoisted_13 = {
+  "class": "grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-10 mt-10"
+};
+var _hoisted_14 = {
+  key: 0
+};
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+  "class": "text-4xl"
+}, "Alternative Titles", -1 /* HOISTED */);
+var _hoisted_16 = {
+  "class": "md:col-span-2"
+};
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+  "class": "text-4xl"
+}, "Production Companies", -1 /* HOISTED */);
+var _hoisted_18 = {
+  "class": "flex flex-col flex-wrap lg:flex-row justify-center lg:justify-between gap-5 items-center"
+};
+var _hoisted_19 = ["src"];
+var _hoisted_20 = {
+  "class": "grid grid-cols-1 md:grid-cols-3 gap-10 mt-5"
+};
+var _hoisted_21 = {
+  "class": "text-3xl"
+};
+var _hoisted_22 = {
+  "class": "text-3xl"
+};
+var _hoisted_23 = {
+  key: 0,
+  "class": "md:col-span-3"
+};
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+  "class": "text-3xl"
+}, "Trailer", -1 /* HOISTED */);
+var _hoisted_25 = ["src"];
+var _hoisted_26 = {
+  key: 0
+};
+var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+  "class": "text-3xl my-10"
+}, "Crew", -1 /* HOISTED */);
+var _hoisted_28 = {
+  "class": "grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8"
+};
+var _hoisted_29 = ["src"];
+var _hoisted_30 = {
+  "class": "text-2xl mt-5"
+};
+var _hoisted_31 = {
+  "class": "text-lg mb-5"
+};
+var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  href: "#",
+  "class": "inline-block py-2 px-7 border border-gray-300 border-solid rounded-full text-base text-body-color font-medium"
+}, " View Details ", -1 /* HOISTED */);
+var _hoisted_33 = {
+  key: 2
+};
+var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+  "class": "text-3xl my-10"
+}, "Reviews", -1 /* HOISTED */);
+var _hoisted_35 = {
+  "class": "grid md:grid-cols-3 grid-cols-1 gap-8"
+};
+var _hoisted_36 = ["src"];
+var _hoisted_37 = {
+  "class": "text-2xl mt-5"
+};
+var _hoisted_38 = {
+  "class": "text-lg mb-5 overflow-y-scroll"
+};
+var _hoisted_39 = ["href"];
+var _hoisted_40 = {
+  key: 3
+};
+var _hoisted_41 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+  "class": "text-3xl my-10"
+}, "Similar Movies", -1 /* HOISTED */);
+var _hoisted_42 = {
+  "class": "grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8"
+};
+var _hoisted_43 = ["src"];
+var _hoisted_44 = {
+  "class": "text-2xl mt-5"
+};
+var _hoisted_45 = {
+  "class": "text-lg mb-5"
+};
+var _hoisted_46 = ["href"];
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: 'https://image.tmdb.org/t/p/original' + $setup.movie.poster_path,
+    alt: ""
+  }, null, 8 /* PROPS */, _hoisted_6)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.movie.original_title), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.formattedDate($setup.movie.release_date)), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.movie.genres, function (genre) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      key: genre.id,
+      "class": "center relative inline-block select-none whitespace-nowrap rounded-lg bg-red-500 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-white"
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(genre.name), 1 /* TEXT */)]);
+  }), 128 /* KEYED_FRAGMENT */))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.movie.overview), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [$setup.alternativeTitles.length > 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_14, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.alternativeTitles.titles, function (alternativeTitle) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
+      key: alternativeTitle.iso_3166_1
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(alternativeTitle.title), 1 /* TEXT */);
+  }), 128 /* KEYED_FRAGMENT */))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.movie.production_companies, function (productionCompany) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", {
+      key: productionCompany,
+      "class": "h-auto max-w-28 w-full",
+      src: 'https://image.tmdb.org/t/p/original' + productionCompany.logo_path,
+      alt: ""
+    }, null, 8 /* PROPS */, _hoisted_19);
+  }), 128 /* KEYED_FRAGMENT */))])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Original Language: "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.movie.original_language), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Popularity: "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.movie.popularity), 1 /* TEXT */)])]), $setup.trailer.key ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_23, [_hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("iframe", {
+    width: "100%",
+    height: "700px",
+    src: 'https://www.youtube.com/embed/' + $setup.trailer.key,
+    title: "YouTube video player",
+    frameborder: "0",
+    allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+    referrerpolicy: "strict-origin-when-cross-origin",
+    allowfullscreen: ""
+  }, null, 8 /* PROPS */, _hoisted_25)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), $setup.displayedCredits.length > 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_26, [_hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.displayedCredits, function (crew, index) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      "class": "flex flex-col justify-center items-center hover:shadow-xl rounded-lg p-8 transition-all",
+      key: index
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+      "class": "max-h-80",
+      src: crew.profile_path ? 'https://image.tmdb.org/t/p/original' + crew.profile_path : 'https://placehold.co/213x320',
+      alt: ""
+    }, null, 8 /* PROPS */, _hoisted_29), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(crew.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(crew.job), 1 /* TEXT */), _hoisted_32]);
+  }), 128 /* KEYED_FRAGMENT */))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.hasMoreItems ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
+    key: 1,
+    onClick: $setup.loadMore,
+    "class": "my-5 flex justify-center mx-auto py-2 px-7 border border-gray-300 border-solid rounded-full text-base text-body-color font-medium transition hover:shadow-xl"
+  }, " Load more ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.reviews.length > 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_33, [_hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_35, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.reviews, function (review) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      "class": "flex flex-col items-center p-8 h-[800px]",
+      key: review.id
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+      "class": "max-h-80",
+      src: review.author_details.avatar_path ? 'https://image.tmdb.org/t/p/original' + review.author_details.avatar_path : 'https://placehold.co/213x320',
+      alt: ""
+    }, null, 8 /* PROPS */, _hoisted_36), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(review.author), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_38, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(review.content), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+      href: review.url,
+      target: "_blank",
+      "class": "inline-block py-2 px-7 border border-gray-300 border-solid rounded-full text-base text-body-color font-medium"
+    }, " more details ", 8 /* PROPS */, _hoisted_39)]);
+  }), 128 /* KEYED_FRAGMENT */))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.similarMovies.length > 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_40, [_hoisted_41, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_42, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.similarMovies, function (similar) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      "class": "flex flex-col justify-center items-center hover:shadow-xl rounded-lg p-8 transition-all",
+      key: similar.id
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+      "class": "max-h-80",
+      src: similar.poster_path ? 'https://image.tmdb.org/t/p/original' + similar.poster_path : 'https://placehold.co/213x320',
+      alt: ""
+    }, null, 8 /* PROPS */, _hoisted_43), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_44, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(similar.title), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_45, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.formattedDate(similar.release_date)), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+      href: $setup.generateSlug(similar.title, similar.id),
+      "class": "inline-block py-2 px-7 border border-gray-300 border-solid rounded-full text-base text-body-color font-medium"
+    }, " View Details ", 8 /* PROPS */, _hoisted_46)]);
+  }), 128 /* KEYED_FRAGMENT */))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
 }
 
 /***/ }),
@@ -19115,6 +19635,33 @@ if (false) {}
 
 /***/ }),
 
+/***/ "./core/includes/assets/src/single-movie.vue":
+/*!***************************************************!*\
+  !*** ./core/includes/assets/src/single-movie.vue ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _single_movie_vue_vue_type_template_id_747d0850__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./single-movie.vue?vue&type=template&id=747d0850 */ "./core/includes/assets/src/single-movie.vue?vue&type=template&id=747d0850");
+/* harmony import */ var _single_movie_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./single-movie.vue?vue&type=script&setup=true&lang=js */ "./core/includes/assets/src/single-movie.vue?vue&type=script&setup=true&lang=js");
+/* harmony import */ var _node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+
+
+
+
+;
+const __exports__ = /*#__PURE__*/(0,_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_single_movie_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_single_movie_vue_vue_type_template_id_747d0850__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"core/includes/assets/src/single-movie.vue"]])
+/* hot reload */
+if (false) {}
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
+
+/***/ }),
+
 /***/ "./core/blocks/popular-actors/src/popular-actors.vue?vue&type=script&setup=true&lang=js":
 /*!**********************************************************************************************!*\
   !*** ./core/blocks/popular-actors/src/popular-actors.vue?vue&type=script&setup=true&lang=js ***!
@@ -19145,6 +19692,21 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./core/includes/assets/src/single-movie.vue?vue&type=script&setup=true&lang=js":
+/*!**************************************************************************************!*\
+  !*** ./core/includes/assets/src/single-movie.vue?vue&type=script&setup=true&lang=js ***!
+  \**************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_single_movie_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_single_movie_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./single-movie.vue?vue&type=script&setup=true&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./core/includes/assets/src/single-movie.vue?vue&type=script&setup=true&lang=js");
+ 
+
+/***/ }),
+
 /***/ "./core/blocks/popular-actors/src/popular-actors.vue?vue&type=template&id=50a507c3":
 /*!*****************************************************************************************!*\
   !*** ./core/blocks/popular-actors/src/popular-actors.vue?vue&type=template&id=50a507c3 ***!
@@ -19171,6 +19733,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_upcoming_movies_vue_vue_type_template_id_9fdcc392__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_upcoming_movies_vue_vue_type_template_id_9fdcc392__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./upcoming-movies.vue?vue&type=template&id=9fdcc392 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./core/blocks/upcoming-movies/src/upcoming-movies.vue?vue&type=template&id=9fdcc392");
+
+
+/***/ }),
+
+/***/ "./core/includes/assets/src/single-movie.vue?vue&type=template&id=747d0850":
+/*!*********************************************************************************!*\
+  !*** ./core/includes/assets/src/single-movie.vue?vue&type=template&id=747d0850 ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_single_movie_vue_vue_type_template_id_747d0850__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_single_movie_vue_vue_type_template_id_747d0850__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./single-movie.vue?vue&type=template&id=747d0850 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./core/includes/assets/src/single-movie.vue?vue&type=template&id=747d0850");
 
 
 /***/ }),

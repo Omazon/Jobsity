@@ -3,6 +3,9 @@
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+include_once( JOBSITY_PLUGIN_DIR.'/core/blocks/popular-actors/fields.php' );
+include_once( JOBSITY_PLUGIN_DIR.'/core/blocks/upcoming-movies/fields.php' );
+
 add_filter( 'block_categories_all' , function( $categories ) {
 
     // Adding a new category.

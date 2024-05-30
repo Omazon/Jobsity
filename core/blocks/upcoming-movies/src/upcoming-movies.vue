@@ -28,10 +28,8 @@
       <div class=" rounded-lg overflow-hidden mb-10 border border-black border-solid">
         <img :src="'https://image.tmdb.org/t/p/original' + movie.poster_path" alt="image" class="w-full"/>
         <div class="p-5 justify-between flex text-center flex-col h-60 bg-white">
-          <h3>
-            <a  href="javascript:void(0)" class="font-semibold text-dark text-xl sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px] mb-4 block hover:text-primary">
+          <h3 class="font-semibold text-dark text-xl sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px] mb-4 block hover:text-primary">
               {{ movie.title }}
-            </a>
           </h3>
           <span class="text-base text-body-color leading-relaxed">
             {{ formattedDate(movie.release_date) }}
@@ -39,7 +37,7 @@
           <span class="text-base text-body-color leading-relaxed">
             {{ getGenreNames(movie.genre_ids) }}
           </span>
-          <a href="javascript:void(0)" class="inline-block py-2 px-7 border border-gray-300 border-solid rounded-full text-base text-body-color font-medium">
+          <a :href="generateSlug(movie.title, movie.id)" class="inline-block py-2 px-7 border border-gray-300 border-solid rounded-full text-base text-body-color font-medium hover:shadow-xl transition">
             View Details
           </a>
         </div>
@@ -48,9 +46,9 @@
   </div>
 </template>
 <script setup>
-import {ref, onMounted, computed} from 'vue';
+import {computed, onMounted, ref} from 'vue';
 
-  const upcomingMovies = ref([]);
+const upcomingMovies = ref([]);
   const genres = ref({});
   const genresArray = ref([]);
   const apiUrl = siteData.apiUrl;
@@ -145,4 +143,19 @@ const availableGenres = computed(() => {
   });
   return genresArray.value.filter(genre => genreIds.has(genre.id));
 });
+
+function generateSlug(movie, id) {
+  let normalizedStr = movie.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+
+  let slug = normalizedStr
+      .toLowerCase()
+      .replace(/\s+/g, '-')
+      .replace(/[^\w\-]+/g, '')
+      .replace(/\-\-+/g, '-')
+      .replace(/^-+/, '')
+      .replace(/-+$/, '');
+
+  return siteData.siteBase+'movie/'+id+'-'+slug;
+}
 </script>
