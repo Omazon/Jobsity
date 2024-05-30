@@ -34,6 +34,7 @@ class Jobsity_Helpers{
         add_filter('query_vars', array($this,'add_query_var_actor'));
         add_action('template_redirect', array($this,'template_redirect_movie'));
         add_action('template_redirect', array($this,'template_redirect_actor'));
+
     }
 
     public function handle_movie_route() {
