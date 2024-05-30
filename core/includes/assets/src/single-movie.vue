@@ -31,7 +31,7 @@
                 </li>
               </ul>
             </div>
-            <div class="md:col-span-2" v-if="movie.production_companies">
+            <div class="md:col-span-2" v-if="movie.production_companies && movie.production_companies.length > 0">
               <h3 class="text-4xl">Production Companies</h3>
               <div class="flex flex-col flex-wrap lg:flex-row justify-center lg:justify-between gap-5 items-center">
                 <img v-for="productionCompany in movie.production_companies"
@@ -50,7 +50,7 @@
         <div>
           <h3 v-if="movie.popularity" class="text-3xl">Popularity: <strong>{{movie.popularity}}</strong></h3>
         </div>
-        <div class="md:col-span-3" v-if="trailer.key">
+        <div class="md:col-span-3" v-if="trailer">
           <h3 class="text-3xl">Trailer</h3>
           <iframe width="100%" height="700px" :src="'https://www.youtube.com/embed/'+trailer.key" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>

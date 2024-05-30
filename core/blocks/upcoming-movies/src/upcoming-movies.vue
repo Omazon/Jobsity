@@ -33,7 +33,7 @@
     <div class="w-full" v-for="movie in filteredItems" :key="movie.id">
       <div class=" rounded-lg overflow-hidden mb-10 border border-black border-solid">
         <img :src="movie.poster_path ? 'https://image.tmdb.org/t/p/original' + movie.poster_path : 'https://placehold.co/213x320?text=No+Image'" alt="image" class="w-full"/>
-        <div class="p-5 justify-between flex text-center flex-col h-64 bg-white min-h-60 overflow-y-scroll  ">
+        <div class="p-5 justify-between flex text-center flex-col h-64 bg-white min-h-60 ">
           <h3 class="font-semibold text-dark text-xl sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px] mb-4 block hover:text-primary">
               {{ movie.title }}
           </h3>
