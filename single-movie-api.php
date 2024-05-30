@@ -3,9 +3,15 @@
  * Template Name: Single Movie API
  * Template Post Type: movie-api
  */
-get_header();
 $movie_string = get_query_var('movie_api');
 $movie_id = explode("-", $movie_string)[0];
+
+if (!is_numeric($movie_id)) {
+    wp_redirect(home_url('/404'));
+    exit;
+}
+get_header();
+
 ?>
 <div id="single-movie" class="mx-auto !mt-10 container" data-movie-id="<?= $movie_id; ?>">
 </div>

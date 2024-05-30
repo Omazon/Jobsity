@@ -25,16 +25,19 @@
           <div class="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-10 mt-10">
             <div v-if="alternativeTitles.length > 0">
               <h3 class="text-4xl">Alternative Titles</h3>
-              <ul>
-                <li v-for="alternativeTitle in alternativeTitles.titles" :key="alternativeTitle.iso_3166_1">
+              <ul class="h-40 overflow-y-scroll">
+                <li v-for="alternativeTitle in alternativeTitles" :key="alternativeTitle.iso_3166_1">
                   {{alternativeTitle.title}}
                 </li>
               </ul>
             </div>
-            <div class="md:col-span-2">
+            <div class="md:col-span-2" v-if="movie.production_companies">
               <h3 class="text-4xl">Production Companies</h3>
               <div class="flex flex-col flex-wrap lg:flex-row justify-center lg:justify-between gap-5 items-center">
-                <img v-for="productionCompany in movie.production_companies" :key="productionCompany" class="h-auto max-w-28 w-full" :src="'https://image.tmdb.org/t/p/original'+productionCompany.logo_path" alt="">
+                <img v-for="productionCompany in movie.production_companies"
+                     :key="productionCompany"
+                     class="h-auto max-w-28 w-full"
+                     :src="'https://image.tmdb.org/t/p/original'+productionCompany.logo_path" alt="">
               </div>
             </div>
           </div>
@@ -42,10 +45,10 @@
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mt-5">
         <div>
-          <h3 class="text-3xl">Original Language: <strong>{{movie.original_language}}</strong></h3>
+          <h3 v-if="movie.original_language" class="text-3xl">Original Language: <strong>{{movie.original_language}}</strong></h3>
         </div>
         <div>
-          <h3 class="text-3xl">Popularity: <strong>{{movie.popularity}}</strong></h3>
+          <h3 v-if="movie.popularity" class="text-3xl">Popularity: <strong>{{movie.popularity}}</strong></h3>
         </div>
         <div class="md:col-span-3" v-if="trailer.key">
           <h3 class="text-3xl">Trailer</h3>
@@ -53,13 +56,13 @@
         </div>
       </div>
       <div v-if="displayedCredits.length > 0">
-        <h3 class="text-3xl my-10">Crew</h3>
+        <h3 class="text-3xl my-10">Cast</h3>
         <div class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">
-          <div class="flex flex-col justify-center items-center hover:shadow-xl rounded-lg p-8 transition-all" v-for="(crew, index) in displayedCredits" :key="index">
-            <img  class="max-h-80" :src="crew.profile_path ? 'https://image.tmdb.org/t/p/original'+crew.profile_path : 'https://placehold.co/213x320'" alt="">
+          <div class="flex flex-col justify-center items-center hover:shadow-xl rounded-lg pb-8 transition-all" v-for="(crew, index) in displayedCredits" :key="index">
+            <img :src="crew.profile_path ? 'https://image.tmdb.org/t/p/original'+crew.profile_path : 'https://placehold.co/213x320'" alt="">
             <span class="text-2xl mt-5">{{crew.name}}</span>
-            <span class="text-lg mb-5">{{crew.job}}</span>
-            <a href="#" class="inline-block py-2 px-7 border border-gray-300 border-solid rounded-full text-base text-body-color font-medium">
+            <span class="text-lg mb-5">{{crew.character}}</span>
+            <a :href="generateSlug(crew.name, crew.id, 'actor')" class="inline-block py-2 px-7 border border-gray-300 border-solid rounded-full text-base text-body-color font-medium">
               View Details
             </a>
           </div>
@@ -86,7 +89,7 @@
         <div class="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">
           <div class="flex flex-col justify-center items-center hover:shadow-xl rounded-lg p-8 transition-all" v-for="similar in similarMovies" :key="similar.id">
             <img  class="max-h-80" :src="similar.poster_path ? 'https://image.tmdb.org/t/p/original'+similar.poster_path : 'https://placehold.co/213x320'" alt="">
-            <span class="text-2xl mt-5">{{similar.title}}</span>
+            <span class="text-2xl mt-5 text-center">{{similar.title}}</span>
             <span class="text-lg mb-5">{{formattedDate(similar.release_date)}}</span>
             <a :href="generateSlug(similar.title, similar.id)" class="inline-block py-2 px-7 border border-gray-300 border-solid rounded-full text-base text-body-color font-medium">
               View Details
@@ -99,7 +102,7 @@
 </template>
 <script setup>
 import {onMounted, ref, computed} from "vue";
-
+import { formattedDate, generateSlug } from '../utils/utils'
 
 const acfMovieId = ref('');
 const movie = ref({});
@@ -128,18 +131,21 @@ onMounted(async () => {
 });
 
 const fetchMovie = async () => {
-  try {
+   try {
     const response = await fetch(siteData.apiUrl+'movie/' + acfMovieId.value);
     movie.value = await response.json();
   } catch (error) {
     console.error('Error fetching upcoming movies:', error);
+    window.location.href = "/404"
+    throw new Error(error);
   }
 };
 
 const fetchAlternativeTitles = async () => {
   try {
     const response = await fetch(siteData.apiUrl+'movie/' + acfMovieId.value+'/alternative-titles');
-    alternativeTitles.value = await response.json();
+    let data = await response.json();
+    alternativeTitles.value = data.titles;
   } catch (error) {
     console.error('Error fetching upcoming movies:', error);
   }
@@ -185,13 +191,6 @@ const fetchSimilar = async () => {
     console.error('Error fetching upcoming movies:', error);
   }
 };
-function formattedDate(dateString) {
-  if(!dateString) return;
-  const date = new Date(dateString);
-  const options = { year: 'numeric', month: 'long', day: 'numeric' };
-  formattedDate.value = new Intl.DateTimeFormat('en-US', options).format(date);
-  return formattedDate.value;
-}
 
 const loadMore = () => {
   currentPage.value++;
@@ -202,19 +201,4 @@ const loadMore = () => {
 const hasMoreItems = computed(() => {
   return displayedCredits.value.length < credits.value.length;
 });
-
-function generateSlug(movie, id) {
-  let normalizedStr = movie.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-
-
-  let slug = normalizedStr
-      .toLowerCase()
-      .replace(/\s+/g, '-')
-      .replace(/[^\w\-]+/g, '')
-      .replace(/\-\-+/g, '-')
-      .replace(/^-+/, '')
-      .replace(/-+$/, '');
-
-  return siteData.siteBase+'movie/'+id+'-'+slug;
-}
 </script>

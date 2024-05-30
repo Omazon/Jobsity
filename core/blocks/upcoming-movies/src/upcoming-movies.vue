@@ -1,33 +1,39 @@
 <template>
   <div v-if="acfSort" class="grid md:grid-cols-3 sm:grid-cols-2 gap-5 mb-10">
-    <div class="relative h-10 w-full min-w-[200px]">
+    <div class="relative h-10 w-full min-w-[200px] flex gap-3">
       <input v-model="filterTitle" class="peer h-full w-full rounded-[7px] border border-blue-gray-200 px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-             placeholder=" "
+             placeholder="Filter movie by Title"
       />
-      <label class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-pink-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-pink-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-        Filter movie by Name
-      </label>
+      <button @click="fetchQueryMovie"
+          class="w-40 middle none center rounded-lg bg-red-500 py-2 px-6 font-sans text-xs font-bold text-white shadow-md transition-all hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+        More titles
+      </button>
     </div>
-    <div class="relative h-10 w-full min-w-[200px]">
+    <div class="relative h-10 w-full min-w-[200px] flex gap-3">
       <input v-model="filterYear" type="number" class="peer h-full w-full rounded-[7px] border border-blue-gray-200 px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-             placeholder=" "
+             placeholder="Filter movie by Year"
       />
-      <label class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-pink-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-pink-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-        Filter movie by Year
-      </label>
+      <button @click="fetchQueryYear"
+          class="w-40 middle none center rounded-lg bg-red-500 py-2 px-6 font-sans text-xs font-bold text-white shadow-md transition-all hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+        More Years
+      </button>
     </div>
-    <div class="relative h-10 w-full min-w-[200px]">
+    <div class="relative h-10 w-full min-w-[200px] flex gap-3">
       <select v-model="filterGenre" class="peer h-full w-full rounded-[7px] border border-blue-gray-200 px-3 py-1.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 disabled:border-0 disabled:bg-blue-gray-50">
         <option value="">Select genre Genre</option>
         <option v-for="genre in availableGenres" :key="genre.id" :value="genre.id">{{ genre.name }}</option>
       </select>
+      <button @click="fetchQueryGenre"
+          class="w-40 middle none center rounded-lg bg-red-500 py-2 px-6 font-sans text-xs font-bold text-white shadow-md transition-all hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+        More Genres
+      </button>
     </div>
   </div>
   <div class="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-5">
     <div class="w-full" v-for="movie in filteredItems" :key="movie.id">
       <div class=" rounded-lg overflow-hidden mb-10 border border-black border-solid">
-        <img :src="'https://image.tmdb.org/t/p/original' + movie.poster_path" alt="image" class="w-full"/>
-        <div class="p-5 justify-between flex text-center flex-col h-60 bg-white">
+        <img :src="movie.poster_path ? 'https://image.tmdb.org/t/p/original' + movie.poster_path : 'https://placehold.co/213x320?text=No+Image'" alt="image" class="w-full"/>
+        <div class="p-5 justify-between flex text-center flex-col h-64 bg-white min-h-60 overflow-y-scroll  ">
           <h3 class="font-semibold text-dark text-xl sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px] mb-4 block hover:text-primary">
               {{ movie.title }}
           </h3>
@@ -46,9 +52,10 @@
   </div>
 </template>
 <script setup>
-import {computed, onMounted, ref} from 'vue';
+import {computed, onMounted, ref, watch} from 'vue';
 
 const upcomingMovies = ref([]);
+const upcomingMoviesOriginal = ref([]);
   const genres = ref({});
   const genresArray = ref([]);
   const apiUrl = siteData.apiUrl;
@@ -66,10 +73,41 @@ const upcomingMovies = ref([]);
       const response = await fetch(apiUrl+'upcoming-movies');
       const data = await response.json();
       upcomingMovies.value = data.results;
+      upcomingMoviesOriginal.value = data.results;
     } catch (error) {
       console.error('Error fetching upcoming movies:', error);
     }
   };
+
+const fetchQueryMovie = async () => {
+  try {
+    const response = await fetch(siteData.apiUrl+'movie?query=' + filterTitle.value);
+    const data = await response.json();
+    upcomingMovies.value = data.results;
+  } catch (error) {
+    console.error('Error fetching upcoming movies:', error);
+  }
+};
+
+const fetchQueryYear = async () => {
+  try {
+    const response = await fetch(siteData.apiUrl+'discover/movie/year?query=' + filterYear.value);
+    const data = await response.json();
+    upcomingMovies.value = data.results;
+  } catch (error) {
+    console.error('Error fetching upcoming movies:', error);
+  }
+};
+
+const fetchQueryGenre = async () => {
+  try {
+    const response = await fetch(siteData.apiUrl+'discover/movie/genre?query=' + filterGenre.value);
+    const data = await response.json();
+    upcomingMovies.value = data.results;
+  } catch (error) {
+    console.error('Error fetching upcoming movies:', error);
+  }
+};
 
 const fetchGenres = async () => {
   try {
@@ -120,6 +158,7 @@ const sortByTitle = (movies) => {
   });
 
   function formattedDate(dateString) {
+    if(!dateString) return;
     const date = new Date(dateString);
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     formattedDate.value = new Intl.DateTimeFormat('en-US', options).format(date);
@@ -128,7 +167,7 @@ const sortByTitle = (movies) => {
 
 const filteredItems = computed(() => {
   return limitedMovies.value.filter(item => {
-    const matchesTitle = item.original_title.toLowerCase().includes(filterTitle.value.toLowerCase());
+    const matchesTitle = item.title.toLowerCase().includes(filterTitle.value.toLowerCase());
     const matchesYear = filterYear.value ? item.release_date.startsWith(filterYear.value) : true;
     const matchesGenre = filterGenre.value ? item.genre_ids.includes(parseInt(filterGenre.value)) : true;
 
@@ -158,4 +197,23 @@ function generateSlug(movie, id) {
 
   return siteData.siteBase+'movie/'+id+'-'+slug;
 }
+
+watch(filterTitle, (newFilterTitle) => {
+  if(newFilterTitle.length === 0){
+    upcomingMovies.value = upcomingMoviesOriginal.value;
+  }
+});
+
+watch(filterYear, (newFilterYear) => {
+  if(newFilterYear.length === 0){
+    upcomingMovies.value = upcomingMoviesOriginal.value;
+  }
+});
+
+watch(filterGenre, (newFilterGenre) => {
+  if(newFilterGenre.length === 0){
+    upcomingMovies.value = upcomingMoviesOriginal.value;
+  }
+});
+
 </script>

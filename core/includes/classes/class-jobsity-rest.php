@@ -100,6 +100,55 @@ class Jobsity_REST {
             ]);
         });
 
+        add_action('rest_api_init', function () {
+            register_rest_route('jobsity/v2', '/person/(?P<actor_id>\d+)', [
+                'methods' => 'GET',
+                'callback' => [$this,'get_single_actor'],
+            ]);
+        });
+
+        add_action('rest_api_init', function () {
+            register_rest_route('jobsity/v2', '/person/(?P<actor_id>\d+)/images', [
+                'methods' => 'GET',
+                'callback' => [$this,'get_actor_images'],
+            ]);
+        });
+
+        add_action('rest_api_init', function () {
+            register_rest_route('jobsity/v2', '/person/(?P<actor_id>\d+)/movie-credits', [
+                'methods' => 'GET',
+                'callback' => [$this,'get_actor_movies'],
+            ]);
+        });
+
+        add_action('rest_api_init', function () {
+            register_rest_route('jobsity/v2', '/person', [
+                'methods' => 'GET',
+                'callback' => [$this,'get_actor_query'],
+            ]);
+        });
+
+        add_action('rest_api_init', function () {
+            register_rest_route('jobsity/v2', '/movie', [
+                'methods' => 'GET',
+                'callback' => [$this,'get_movie_query'],
+            ]);
+        });
+
+        add_action('rest_api_init', function () {
+            register_rest_route('jobsity/v2', '/discover/movie/year', [
+                'methods' => 'GET',
+                'callback' => [$this,'get_movie_year'],
+            ]);
+        });
+
+        add_action('rest_api_init', function () {
+            register_rest_route('jobsity/v2', '/discover/movie/genre', [
+                'methods' => 'GET',
+                'callback' => [$this,'get_movie_genre'],
+            ]);
+        });
+
     }
 
     function get_upcoming_movies(WP_REST_Request $request) {
@@ -181,6 +230,89 @@ class Jobsity_REST {
     function get_similar_movies(WP_REST_Request $request) {
         $movie_id = $request->get_param('movie_id');
         $response = $this->client->request('GET', "movie/{$movie_id}/similar?language=en-US");
+
+        $body = $response->getBody();
+        $data = json_decode($body, true);
+
+        return new WP_REST_Response($data, 200);
+    }
+
+    function get_single_actor(WP_REST_Request $request) {
+        $actor_id = $request->get_param('actor_id');
+        $response = $this->client->request('GET', "person/{$actor_id}?language=en-US");
+
+        $body = $response->getBody();
+        $data = json_decode($body, true);
+
+        return new WP_REST_Response($data, 200);
+    }
+
+    function get_actor_images(WP_REST_Request $request) {
+        $actor_id = $request->get_param('actor_id');
+        $response = $this->client->request('GET', "person/{$actor_id}/images?language=en-US");
+
+        $body = $response->getBody();
+        $data = json_decode($body, true);
+
+        return new WP_REST_Response($data, 200);
+    }
+
+    function get_actor_movies(WP_REST_Request $request) {
+        $actor_id = $request->get_param('actor_id');
+        $response = $this->client->request('GET', "person/{$actor_id}/movie_credits?language=en-US");
+
+        $body = $response->getBody();
+        $data = json_decode($body, true);
+
+        return new WP_REST_Response($data, 200);
+    }
+
+    function get_actor_query(WP_REST_Request $request) {
+        $query = $request->get_param('query');
+        if (!$query) {
+            return new WP_Error('no_query', 'Query parameter is required', ['status' => 400]);
+        }
+        $response = $this->client->request('GET', "search/person?query={$query}&api_key=$this->access_token}");
+
+        $body = $response->getBody();
+        $data = json_decode($body, true);
+
+        return new WP_REST_Response($data, 200);
+    }
+
+
+    function get_movie_query(WP_REST_Request $request) {
+        $query = $request->get_param('query');
+        if (!$query) {
+            return new WP_Error('no_query', 'Query parameter is required', ['status' => 400]);
+        }
+        $response = $this->client->request('GET', "search/movie?query={$query}&api_key=$this->access_token}");
+
+        $body = $response->getBody();
+        $data = json_decode($body, true);
+
+        return new WP_REST_Response($data, 200);
+    }
+
+    function get_movie_year(WP_REST_Request $request) {
+        $query = $request->get_param('query');
+        if (!$query) {
+            return new WP_Error('no_query', 'Query parameter is required', ['status' => 400]);
+        }
+        $response = $this->client->request('GET', "discover/movie?primary_release_year={$query}");
+
+        $body = $response->getBody();
+        $data = json_decode($body, true);
+
+        return new WP_REST_Response($data, 200);
+    }
+
+    function get_movie_genre(WP_REST_Request $request) {
+        $query = $request->get_param('query');
+        if (!$query) {
+            return new WP_Error('no_query', 'Query parameter is required', ['status' => 400]);
+        }
+        $response = $this->client->request('GET', "discover/movie?with_genres={$query}");
 
         $body = $response->getBody();
         $data = json_decode($body, true);

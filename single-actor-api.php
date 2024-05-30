@@ -1,13 +1,18 @@
 <?php
 /*
- * Template Name: Single Movie API
+ * Template Name: Single Actor  API
  * Template Post Type: movie-api
  */
+$actor_string = get_query_var('actor_api');
+$actor_id = explode("-", $actor_string)[0];
+
+if (!is_numeric($actor_id)) {
+    wp_redirect(home_url('/404'));
+    exit;
+}
 get_header();
-$movie_string = get_query_var('movie_api');
-$movie_id = explode("-", $movie_string)[0];
 ?>
-<div id="single-movie" class="mx-auto !mt-10 container" data-movie-id="<?= $movie_id; ?>">
+<div id="single-actor" class="mx-auto !mt-10 container" data-actor-id="<?= $actor_id; ?>">
 </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
