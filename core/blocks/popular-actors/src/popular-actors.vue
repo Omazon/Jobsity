@@ -38,7 +38,7 @@
   </div>
   <div class="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-5">
     <div class="w-full" v-for="actor in filteredItems" :key="actor.id">
-      <div class=" rounded-lg overflow-hidden mb-10 border border-black border-solid">
+      <div class=" rounded-lg overflow-hidden mb-10 border border-black border-solid hover:shadow-xl hover:shadow-white transition">
         <img :src="actor.profile_path ?'https://image.tmdb.org/t/p/original' + actor.profile_path: 'https://placehold.co/213x320?text=No+Image'" alt="image" class="w-full"/>
         <div class="p-5 justify-between flex text-center flex-col h-36 bg-white">
           <h3>
@@ -46,7 +46,7 @@
               {{ actor.name }}
             </a>
           </h3>
-          <a :href="generateSlug(actor.name, actor.id)" class="inline-block py-2 px-7 border border-gray-300 border-solid rounded-full text-base text-body-color font-medium">
+          <a :href="generateSlug(actor.name, actor.id)" class="inline-block py-2 px-7 border border-gray-300 border-solid rounded-full text-base text-body-color font-medium hover:shadow-md hover:shadow-black transition">
             View Details
           </a>
         </div>

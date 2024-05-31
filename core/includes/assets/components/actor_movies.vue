@@ -6,7 +6,7 @@
       <span class="text-2xl mt-5 text-center">{{crew.original_title}}</span>
       <span class="text-lg">{{crew.character}}</span>
       <span class="text-lg mb-5">{{formattedDate(crew.release_date)}}</span>
-      <a :href="generateSlug(crew.original_title, crew.id)" class="inline-block py-2 px-7 border border-gray-300 border-solid rounded-full text-base text-body-color font-medium">
+      <a :href="generateSlug(crew.original_title, crew.id)" class="inline-block py-2 px-7 border border-gray-300 border-solid rounded-full text-base text-body-color font-medium hover:shadow-xl transition">
         View Details
       </a>
     </div>

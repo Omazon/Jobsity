@@ -59,10 +59,10 @@
         <h3 class="text-3xl my-10">Cast</h3>
         <div class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">
           <div class="flex flex-col justify-center items-center hover:shadow-xl rounded-lg pb-8 transition-all" v-for="(crew, index) in displayedCredits" :key="index">
-            <img :src="crew.profile_path ? 'https://image.tmdb.org/t/p/original'+crew.profile_path : 'https://placehold.co/213x320'" alt="">
+            <img class="min-h-[34rem]" :src="crew.profile_path ? 'https://image.tmdb.org/t/p/original'+crew.profile_path : 'https://placehold.co/213x320?text=No+Image'" alt="">
             <span class="text-2xl mt-5">{{crew.name}}</span>
             <span class="text-lg mb-5">{{crew.character}}</span>
-            <a :href="generateSlug(crew.name, crew.id, 'actor')" class="inline-block py-2 px-7 border border-gray-300 border-solid rounded-full text-base text-body-color font-medium">
+            <a :href="generateSlug(crew.name, crew.id, 'actor')" class="inline-block py-2 px-7 border border-gray-300 border-solid rounded-full text-base text-body-color font-medium hover:shadow-xl transition">
               View Details
             </a>
           </div>
@@ -75,7 +75,7 @@
         <h3 class="text-3xl my-10">Reviews</h3>
         <div class="grid md:grid-cols-3 grid-cols-1 gap-8">
           <div class="flex flex-col items-center p-8 h-[800px]" v-for="review in reviews" :key="review.id">
-            <img  class="max-h-80" :src="review.author_details.avatar_path ? 'https://image.tmdb.org/t/p/original'+review.author_details.avatar_path : 'https://placehold.co/213x320'" alt="">
+            <img  class="max-h-80" :src="review.author_details.avatar_path ? 'https://image.tmdb.org/t/p/original'+review.author_details.avatar_path : 'https://placehold.co/213x320?text=No+Image'" alt="">
             <span class="text-2xl mt-5">{{review.author}}</span>
             <p class="text-lg mb-5 overflow-y-scroll">{{review.content}}</p>
             <a :href="review.url" target="_blank" class="inline-block py-2 px-7 border border-gray-300 border-solid rounded-full text-base text-body-color font-medium">

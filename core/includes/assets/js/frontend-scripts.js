@@ -19781,7 +19781,7 @@ var _hoisted_10 = {
   "class": "grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-5"
 };
 var _hoisted_11 = {
-  "class": "rounded-lg overflow-hidden mb-10 border border-black border-solid"
+  "class": "rounded-lg overflow-hidden mb-10 border border-black border-solid hover:shadow-xl hover:shadow-white transition"
 };
 var _hoisted_12 = ["src"];
 var _hoisted_13 = {
@@ -19833,7 +19833,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "class": "w-full"
     }, null, 8 /* PROPS */, _hoisted_12), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(actor.name), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
       href: $setup.generateSlug(actor.name, actor.id),
-      "class": "inline-block py-2 px-7 border border-gray-300 border-solid rounded-full text-base text-body-color font-medium"
+      "class": "inline-block py-2 px-7 border border-gray-300 border-solid rounded-full text-base text-body-color font-medium hover:shadow-md hover:shadow-black transition"
     }, " View Details ", 8 /* PROPS */, _hoisted_15)])])]);
   }), 128 /* KEYED_FRAGMENT */))])], 64 /* STABLE_FRAGMENT */);
 }
@@ -19874,20 +19874,20 @@ var _hoisted_7 = {
   "class": "grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-5"
 };
 var _hoisted_8 = {
-  "class": "rounded-lg overflow-hidden mb-10 border border-black border-solid"
+  "class": "rounded-lg overflow-hidden mb-10 border border-black border-solid hover:shadow-xl hover:shadow-red-500 transition"
 };
 var _hoisted_9 = ["src"];
 var _hoisted_10 = {
-  "class": "p-5 justify-between flex text-center flex-col h-64 bg-white min-h-60"
+  "class": "p-5 justify-between flex text-center flex-col h-64 min-h-60 bg-black"
 };
 var _hoisted_11 = {
-  "class": "font-semibold text-dark text-xl sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px] mb-4 block hover:text-primary"
+  "class": "font-semibold text-xl sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px] mb-4 block text-white"
 };
 var _hoisted_12 = {
-  "class": "text-base text-body-color leading-relaxed"
+  "class": "text-base text-body-color text-white leading-relaxed"
 };
 var _hoisted_13 = {
-  "class": "text-base text-body-color leading-relaxed"
+  "class": "text-base text-body-color text-whiteleading-relaxed"
 };
 var _hoisted_14 = ["href"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -19930,10 +19930,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
       src: movie.poster_path ? 'https://image.tmdb.org/t/p/original' + movie.poster_path : 'https://placehold.co/213x320?text=No+Image',
       alt: "image",
-      "class": "w-full"
+      "class": "w-full min-h-96"
     }, null, 8 /* PROPS */, _hoisted_9), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(movie.title), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.formattedDate(movie.release_date)), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.getGenreNames(movie.genre_ids)), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
       href: $setup.generateSlug(movie.title, movie.id),
-      "class": "inline-block py-2 px-7 border border-gray-300 border-solid rounded-full text-base text-body-color font-medium hover:shadow-xl transition"
+      "class": "inline-block text-white py-2 px-7 border border-gray-300 border-solid rounded-full text-base text-body-color font-medium"
     }, " View Details ", 8 /* PROPS */, _hoisted_14)])])]);
   }), 128 /* KEYED_FRAGMENT */))])], 64 /* STABLE_FRAGMENT */);
 }
@@ -19981,7 +19981,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       alt: ""
     }, null, 8 /* PROPS */, _hoisted_3), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(crew.original_title), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(crew.character), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.formattedDate(crew.release_date)), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
       href: $setup.generateSlug(crew.original_title, crew.id),
-      "class": "inline-block py-2 px-7 border border-gray-300 border-solid rounded-full text-base text-body-color font-medium"
+      "class": "inline-block py-2 px-7 border border-gray-300 border-solid rounded-full text-base text-body-color font-medium hover:shadow-xl transition"
     }, " View Details ", 8 /* PROPS */, _hoisted_7)]);
   }), 128 /* KEYED_FRAGMENT */))]), $setup.hasMoreItems ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
     key: 1,
@@ -20261,11 +20261,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "class": "flex flex-col justify-center items-center hover:shadow-xl rounded-lg pb-8 transition-all",
       key: index
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-      src: crew.profile_path ? 'https://image.tmdb.org/t/p/original' + crew.profile_path : 'https://placehold.co/213x320',
+      "class": "min-h-[34rem]",
+      src: crew.profile_path ? 'https://image.tmdb.org/t/p/original' + crew.profile_path : 'https://placehold.co/213x320?text=No+Image',
       alt: ""
     }, null, 8 /* PROPS */, _hoisted_30), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(crew.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(crew.character), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
       href: $setup.generateSlug(crew.name, crew.id, 'actor'),
-      "class": "inline-block py-2 px-7 border border-gray-300 border-solid rounded-full text-base text-body-color font-medium"
+      "class": "inline-block py-2 px-7 border border-gray-300 border-solid rounded-full text-base text-body-color font-medium hover:shadow-xl transition"
     }, " View Details ", 8 /* PROPS */, _hoisted_33)]);
   }), 128 /* KEYED_FRAGMENT */))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.hasMoreItems ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
     key: 1,
@@ -20277,7 +20278,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       key: review.id
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
       "class": "max-h-80",
-      src: review.author_details.avatar_path ? 'https://image.tmdb.org/t/p/original' + review.author_details.avatar_path : 'https://placehold.co/213x320',
+      src: review.author_details.avatar_path ? 'https://image.tmdb.org/t/p/original' + review.author_details.avatar_path : 'https://placehold.co/213x320?text=No+Image',
       alt: ""
     }, null, 8 /* PROPS */, _hoisted_37), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_38, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(review.author), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_39, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(review.content), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
       href: review.url,

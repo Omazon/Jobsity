@@ -31,19 +31,19 @@
   </div>
   <div class="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-5">
     <div class="w-full" v-for="movie in filteredItems" :key="movie.id">
-      <div class=" rounded-lg overflow-hidden mb-10 border border-black border-solid">
-        <img :src="movie.poster_path ? 'https://image.tmdb.org/t/p/original' + movie.poster_path : 'https://placehold.co/213x320?text=No+Image'" alt="image" class="w-full"/>
-        <div class="p-5 justify-between flex text-center flex-col h-64 bg-white min-h-60 ">
-          <h3 class="font-semibold text-dark text-xl sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px] mb-4 block hover:text-primary">
+      <div class=" rounded-lg overflow-hidden mb-10 border border-black border-solid hover:shadow-xl hover:shadow-red-500 transition">
+        <img :src="movie.poster_path ? 'https://image.tmdb.org/t/p/original' + movie.poster_path : 'https://placehold.co/213x320?text=No+Image'" alt="image" class="w-full min-h-96"/>
+        <div class="p-5 justify-between flex text-center flex-col h-64 min-h-60 bg-black ">
+          <h3 class="font-semibold text-xl sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px] mb-4 block text-white">
               {{ movie.title }}
           </h3>
-          <span class="text-base text-body-color leading-relaxed">
+          <span class="text-base text-body-color text-white leading-relaxed">
             {{ formattedDate(movie.release_date) }}
           </span>
-          <span class="text-base text-body-color leading-relaxed">
+          <span class="text-base text-body-color text-whiteleading-relaxed">
             {{ getGenreNames(movie.genre_ids) }}
           </span>
-          <a :href="generateSlug(movie.title, movie.id)" class="inline-block py-2 px-7 border border-gray-300 border-solid rounded-full text-base text-body-color font-medium hover:shadow-xl transition">
+          <a :href="generateSlug(movie.title, movie.id)" class="inline-block text-white py-2 px-7 border border-gray-300 border-solid rounded-full text-base text-body-color font-medium">
             View Details
           </a>
         </div>
